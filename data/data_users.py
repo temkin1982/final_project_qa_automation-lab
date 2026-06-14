@@ -40,23 +40,3 @@ INVALID_RES = [
     "Wrong password",
     "Wrong password",
 ]
-
-
-"""
-admin@example.com / admin123
-Admin
-alice@example.com / admin123
-Admin
-bob@example.com / password123
-charlie@example.com / password123
-diana@example.com / password123
-eve@example.com / password123
-guest1@example.com / guest123
-guest2@example.com / guest123
-"""
-# INVALID_USERS = [
-#     ("adminexample.com", "admin123"),
-#     ("admin@example", "admin123"),
-#     ("", "admin123"),
-#     ("admin@example.com", "")
-# ]
