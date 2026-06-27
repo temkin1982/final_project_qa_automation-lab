@@ -76,11 +76,3 @@ def test_create_board(login):
     create_board = DashboardPage(login)
     create_board.create_board()
     create_board.verify_board_modal_opened()
-
-
-def test_find_modal(login):
-    dashboard = DashboardPage(login)
-    dashboard.create_board()
-    dashboard.page.wait_for_timeout(500)
-    print(dashboard.page.content())
-    dashboard.page.wait_for_timeout(2000)

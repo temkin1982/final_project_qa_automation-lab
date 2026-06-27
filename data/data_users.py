@@ -1,3 +1,10 @@
+from faker import Faker
+
+fake = Faker()
+fake_user = fake.user_name()
+fake_email = fake.email()
+
+
 VALID_USERS = [
     (
         "admin@example.com",
@@ -40,3 +47,30 @@ INVALID_RES = [
     "Wrong password",
     "Wrong password",
 ]
+"""
+nado dobavit Faker
+"""
+UNIQ_USER = [
+    (
+        fake_user,
+        fake_email,
+        "admin1982",
+        "admin1982",
+        "Регистрация успешна!",
+    ),
+    (
+        fake_user,
+        "admin19821@gmail.com",
+        "admin1982",
+        "admin1982",
+        "Username already taken",
+    ),
+    (
+        "admin198216",
+        fake_email,
+        "admin1982",
+        "admin1982",
+        "Email already registered",
+    ),
+]
+RES_USER_UNIQ = ["REGISTER PASS", "UNIQ USER PASS", "UNIQ EMAIL PASS"]
