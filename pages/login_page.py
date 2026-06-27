@@ -12,10 +12,12 @@ class LoginPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
+        self.open_register_card = page.get_by_role("link", name="зарегистрируйтесь")
+
         self.email = page.locator('[data-qa="login-email-input"]')
         self.password = page.locator('[data-qa="login-password-input"]')
         self.submit_button = page.locator('[data-qa="login-submit-button"]')
-        self.login_form = page.locator('[data-qa="login-form"]')
+        self.login_form = page.locator('[data-qa="login-form-container"]')
         self.login_title = page.locator('[data-qa="login-title"]')
         self.toast_message = page.locator('[class="toast-message"]')
 
@@ -26,6 +28,9 @@ class LoginPage(BasePage):
         super().verify_page_opened(self.path, self.title)
         expect(self.login_form).to_be_visible()
         expect(self.login_title).to_contain_text("Вход в систему")
+
+    def click_register(self):
+        self.open_register_card.click()
 
     def login(self, email, password):
         self.email.fill(email)
