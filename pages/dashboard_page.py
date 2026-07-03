@@ -4,6 +4,7 @@ from core.base_page import BasePage
 
 
 class DashboardPage(BasePage):
+    """Dashboard page."""
 
     path = "/dashboard"
     title = "Task Management Board"

@@ -5,6 +5,7 @@ from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
 from pages.create_board_page import CreateBoardModal
 from pages.register_page import Register
+from pages.subscription_page import Subscription
 from data.data_users import VALID_USERS
 
 
@@ -37,4 +38,12 @@ def register(page: Page):
 
     new_user = Register(page)
     new_user.verify_card_register_opened()
+    return page
+
+
+@pytest.fixture
+def subscription(page: Page):
+    sub = Subscription(page)
+    sub.open()
+    sub.verify_subscription_opened()
     return page

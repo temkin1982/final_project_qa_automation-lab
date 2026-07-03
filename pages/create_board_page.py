@@ -4,6 +4,7 @@ from core.base_page import BasePage
 
 
 class CreateBoardModal(BasePage):
+    """Create board modal window."""
 
     def __init__(self, page: Page):
         super().__init__(page)

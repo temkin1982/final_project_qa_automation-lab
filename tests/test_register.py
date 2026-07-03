@@ -1,13 +1,12 @@
 import pytest
 
+from faker import Faker
+
 from pages.register_page import Register
 from pages.dashboard_page import DashboardPage
 from pages.login_page import LoginPage
 
 from data.data_users import UNIQ_USER, RES_USER_UNIQ
-
-
-from faker import Faker
 
 
 @pytest.mark.reg1
