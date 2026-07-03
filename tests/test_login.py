@@ -11,7 +11,7 @@ def test_open_home_page_and_login(page: Page):
     home_page = HomePage(page)
     home_page.open()
     home_page.verify_page_opened()
-    home_page.open_tms_page()
+    home_page.open_card_login_page()
 
     login_page = LoginPage(page)
     login_page.verify_page_opened()

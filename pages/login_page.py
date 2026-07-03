@@ -1,10 +1,10 @@
+from playwright.sync_api import Page, expect
+
 from core.base_page import BasePage
 
 
-from playwright.sync_api import Page, expect
-
-
 class LoginPage(BasePage):
+    """Login page."""
 
     path = "/login"
     title = "Task Management Board"

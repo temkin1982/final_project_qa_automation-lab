@@ -2,6 +2,7 @@ from playwright.sync_api import Page, expect
 
 
 class BasePage:
+    """Base class for all pages."""
 
     def __init__(self, page: Page):
         self.page = page
