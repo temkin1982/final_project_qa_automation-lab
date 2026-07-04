@@ -18,7 +18,6 @@ from data.data_card import (
 )
 
 
-@pytest.mark.sub0
 def test_open_home_page_and_login(page: Page):
     home_page = HomePage(page)
     home_page.open()
@@ -29,14 +28,12 @@ def test_open_home_page_and_login(page: Page):
     sub_page.verify_subscription_opened()
 
 
-@pytest.mark.sub1
 def test_return_button(subscription):
     sub = Subscription(subscription)
     sub.return_from_subscription_page()
     expect(subscription).to_have_url("http://localhost:3000/automation-lab")
 
 
-@pytest.mark.sub2
 @pytest.mark.parametrize("period, expect_res", PERIOD, ids=RES_PERIOD)
 def test_click_choice_period(subscription, period, expect_res):
     sub = Subscription(subscription)
@@ -44,7 +41,6 @@ def test_click_choice_period(subscription, period, expect_res):
     sub.verify_text_period(expect_res)
 
 
-@pytest.mark.sub3
 @pytest.mark.parametrize("tariff, expect_res", TARIFF, ids=RES_TARIFF)
 def test_click_tariff_choice(subscription, tariff, expect_res):
     sub = Subscription(subscription)
@@ -52,7 +48,6 @@ def test_click_tariff_choice(subscription, tariff, expect_res):
     sub.verify_text_tariff(expect_res)
 
 
-@pytest.mark.sub4
 @pytest.mark.parametrize(
     "period, tariff, promo_code, expect_res", PROMO_CODE, ids=RES_PROMO_CODE
 )
@@ -66,7 +61,6 @@ def test_promo_code_valid_and_invalid(
     sub.input_promo_code(promo_code, expect_res)
 
 
-@pytest.mark.sub5
 @pytest.mark.parametrize(
     "card_number, mm_yy, cvv, expect_res", VALID_CREDIT_CARDS, ids=RES_VALID_CARDS
 )
@@ -80,7 +74,6 @@ def test_valid_credit_cards(subscription, card_number, mm_yy, cvv, expect_res):
     card.verify_subscription_opened()
 
 
-@pytest.mark.sub6
 @pytest.mark.parametrize(
     "card_number, mm_yy, cvv, expect_res", INVALID_CREDIT_CARDS, ids=RES_INVALID_CARDS
 )
@@ -94,7 +87,6 @@ def test_invalid_credit_cards(subscription, card_number, mm_yy, cvv, expect_res)
     card.verify_subscription_opened()
 
 
-@pytest.mark.sub7
 def test_big_numbers_to_card(subscription):
     card = Subscription(subscription)
     card.verify_summary_section()

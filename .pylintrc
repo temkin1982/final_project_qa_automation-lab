@@ -5,7 +5,8 @@ disable=
     redefined-outer-name,
     too-many-instance-attributes,
     too-many-arguments,
-    arguments-differ
+    arguments-differ,
+    duplicate-code
 
 [DESIGN]
 max-attributes=25
