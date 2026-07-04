@@ -9,7 +9,6 @@ from pages.login_page import LoginPage
 from data.data_users import UNIQ_USER, RES_USER_UNIQ
 
 
-@pytest.mark.reg1
 def test_register(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -21,7 +20,6 @@ def test_register(register):
     user.verify_register_success()
 
 
-@pytest.mark.reg2
 def test_register_and_login(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -41,7 +39,6 @@ def test_register_and_login(register):
     dashboard.verify_page_opened()
 
 
-@pytest.mark.reg3
 def test_error_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -53,7 +50,6 @@ def test_error_password(register):
     user.verify_password_error()
 
 
-@pytest.mark.reg4
 def test_error_minlength_3_for_user(register):
     fake = Faker()
     fake_email = fake.email()
@@ -64,7 +60,6 @@ def test_error_minlength_3_for_user(register):
     user.verify_card_register_opened()
 
 
-@pytest.mark.reg5
 def test_error_email(register):
     user = Register(register)
     user.register("abc", "admingmail.com", "test1234", "test1234")
@@ -72,7 +67,6 @@ def test_error_email(register):
     user.verify_card_register_opened()
 
 
-@pytest.mark.reg6
 def test_error_minlength_6_for_user_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -84,7 +78,6 @@ def test_error_minlength_6_for_user_password(register):
     user.verify_card_register_opened()
 
 
-@pytest.mark.reg7
 def test_minlength_6_for_user_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -96,7 +89,6 @@ def test_minlength_6_for_user_password(register):
     user.verify_register_success()
 
 
-@pytest.mark.reg8
 @pytest.mark.parametrize(
     "user, email, password, confirm_password, res", UNIQ_USER, ids=RES_USER_UNIQ
 )
