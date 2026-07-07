@@ -1,5 +1,7 @@
 .venv/
 allure-results/
+allure-report/
 __pycache__/
 .pytest_cache/
 .env
+test_logs.log

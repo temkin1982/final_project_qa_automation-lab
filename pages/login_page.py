@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page, expect
 
 from core.base_page import BasePage
@@ -21,21 +22,26 @@ class LoginPage(BasePage):
         self.login_title = page.locator('[data-qa="login-title"]')
         self.toast_message = page.locator('[class="toast-message"]')
 
+    @allure.step("Open login page")
     def open(self) -> None:
         self.goto(self.path)
 
+    @allure.step("Verify page is opened")
     def verify_page_opened(self) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.login_form).to_be_visible()
         expect(self.login_title).to_contain_text("Вход в систему")
 
+    @allure.step("Open register card")
     def click_register(self):
         self.open_register_card.click()
 
+    @allure.step("Login with email and password: {email}")
     def login(self, email, password):
         self.email.fill(email)
         self.password.fill(password)
         self.submit_button.click()
 
+    @allure.step("Verify error message {text}")
     def verify_error_message(self, text):
         expect(self.toast_message).to_have_text(text)

@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page, expect
 
 
@@ -8,9 +9,11 @@ class BasePage:
         self.page = page
         self.domain = "http://localhost:3000"
 
+    @allure.step("Navigate to: {url}")
     def goto(self, url: str) -> None:
         self.page.goto(f"{self.domain}{url}")
 
+    @allure.step("Verify page is opened: {url}")
     def verify_page_opened(self, url: str, title: str) -> None:
         expect(self.page).to_have_url(f"{self.domain}{url}")
         expect(self.page).to_have_title(title)

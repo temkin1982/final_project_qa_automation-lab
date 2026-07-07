@@ -1,3 +1,4 @@
+import allure
 import pytest
 
 from faker import Faker
@@ -9,6 +10,9 @@ from pages.login_page import LoginPage
 from data.data_users import UNIQ_USER, RES_USER_UNIQ
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("Register user")
 def test_register(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -20,6 +24,9 @@ def test_register(register):
     user.verify_register_success()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("Create a new user and login with new user and email")
 def test_register_and_login(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -39,6 +46,9 @@ def test_register_and_login(register):
     dashboard.verify_page_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("Create new user with error password")
 def test_error_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -50,6 +60,9 @@ def test_error_password(register):
     user.verify_password_error()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("User with under minimum length")
 def test_error_minlength_3_for_user(register):
     fake = Faker()
     fake_email = fake.email()
@@ -60,13 +73,20 @@ def test_error_minlength_3_for_user(register):
     user.verify_card_register_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("User with invalid email")
 def test_error_email(register):
     user = Register(register)
-    user.register("abc", "admingmail.com", "test1234", "test1234")
+    invalid_email = "admingmail.com"
+    user.register("abc", invalid_email, "test1234", "test1234")
     user.submit()
     user.verify_card_register_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("User with invalid password")
 def test_error_minlength_6_for_user_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -78,6 +98,9 @@ def test_error_minlength_6_for_user_password(register):
     user.verify_card_register_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("User register with valid password")
 def test_minlength_6_for_user_password(register):
     fake = Faker()
     fake_user = fake.user_name()
@@ -89,6 +112,9 @@ def test_minlength_6_for_user_password(register):
     user.verify_register_success()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Register new user")
+@allure.title("Create new user with uniq user: {user}")
 @pytest.mark.parametrize(
     "user, email, password, confirm_password, res", UNIQ_USER, ids=RES_USER_UNIQ
 )
