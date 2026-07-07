@@ -1,4 +1,5 @@
 import pytest
+import allure
 from faker import Faker
 
 from playwright.sync_api import Page
@@ -17,6 +18,7 @@ BOARD_ID = 1
 
 
 @pytest.fixture
+@allure.title("Login with admin user email and password")
 def login(page: Page):
     email, password = VALID_USERS[0]
     login_page = LoginPage(page)
@@ -27,6 +29,7 @@ def login(page: Page):
 
 
 @pytest.fixture
+@allure.title("Open create board")
 def open_create_board(login):
     dashboard = DashboardPage(login)
     dashboard.create_board()
@@ -37,6 +40,7 @@ def open_create_board(login):
 
 
 @pytest.fixture
+@allure.title("Open login page and navigate to register panel")
 def register(page: Page):
     login_page = LoginPage(page)
     login_page.open()
@@ -49,6 +53,7 @@ def register(page: Page):
 
 
 @pytest.fixture
+@allure.title("Open subscription model")
 def subscription(page: Page):
     sub = Subscription(page)
     sub.open()
@@ -57,11 +62,13 @@ def subscription(page: Page):
 
 
 @pytest.fixture
+@allure.title("Api client")
 def api_client():
     return Users()
 
 
 @pytest.fixture
+@allure.title("Get api client ID")
 def api_user_id(api_client):
     fake = Faker()
 
@@ -87,11 +94,13 @@ def api_user_id(api_client):
 
 
 @pytest.fixture
+@allure.title("Api tasks")
 def api_tasks():
     return Tasks()
 
 
 @pytest.fixture
+@allure.title("Get api task ID")
 def api_task_id(api_tasks):
     fake = Faker()
 

@@ -6,7 +6,9 @@ disable=
     too-many-instance-attributes,
     too-many-arguments,
     arguments-differ,
-    duplicate-code
+    duplicate-code,
+    logging-fstring-interpolation,
+    broad-exception-caught
 
 [DESIGN]
 max-attributes=25

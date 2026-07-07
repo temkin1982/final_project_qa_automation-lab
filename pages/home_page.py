@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page, expect
 
 from core.base_page import BasePage
@@ -28,15 +29,19 @@ class HomePage(BasePage):
             "link", name="Открыть"
         )
 
+    @allure.step("Open home page")
     def open(self) -> None:
         self.goto(self.path)
 
+    @allure.step("Verify page is opened")
     def verify_page_opened(self) -> None:
         super().verify_page_opened(self.path, self.title)
         expect(self.tmb_card_login).to_be_visible()
 
+    @allure.step("Open login card")
     def open_card_login_page(self):
         self.open_card_login_link.click()
 
+    @allure.step("Open subscription card")
     def open_card_subscription_page(self):
         self.open_card_subscription_link.click()

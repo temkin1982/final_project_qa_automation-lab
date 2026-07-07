@@ -19,4 +19,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pylint
-        run: pylint pages core tests data conftest.py
+        run: pylint api pages core tests data conftest.py utils
+            

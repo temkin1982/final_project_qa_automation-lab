@@ -1,18 +1,28 @@
+import allure
 from pages.create_board_page import CreateBoardModal
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Close create board button")
 def test_close_create_board(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.close_model()
     create_board.verify_close_model()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Cancel create board")
 def test_cancel_create_board(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.cancel()
     create_board.verify_close_model()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Create board")
 def test_create_board(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.fill_title("Test board")
@@ -20,6 +30,9 @@ def test_create_board(open_create_board):
     create_board.verify_board_created()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Create board with description")
 def test_create_board_with_description(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.fill_title("My board")
@@ -28,6 +41,9 @@ def test_create_board_with_description(open_create_board):
     create_board.verify_board_created()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Create board with minimum length")
 def test_create_board_with_minimum(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.fill_title("abc")
@@ -35,6 +51,9 @@ def test_create_board_with_minimum(open_create_board):
     create_board.verify_board_created()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Create board with under minimum length")
 def test_create_board_with_under_minimum(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.fill_title("ab")
@@ -42,6 +61,9 @@ def test_create_board_with_under_minimum(open_create_board):
     create_board.verify_board_modal_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Board Creation")
+@allure.title("Check the checkbox on board panel")
 def test_checkbox(open_create_board):
     create_board = CreateBoardModal(open_create_board)
     create_board.check_checkbox()

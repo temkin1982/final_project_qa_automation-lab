@@ -1,4 +1,6 @@
+import allure
 import pytest
+
 from playwright.sync_api import Page, expect
 
 from pages.home_page import HomePage
@@ -18,6 +20,9 @@ from data.data_card import (
 )
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Open subscription page from home")
 def test_open_home_page_and_login(page: Page):
     home_page = HomePage(page)
     home_page.open()
@@ -28,12 +33,18 @@ def test_open_home_page_and_login(page: Page):
     sub_page.verify_subscription_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Navigate back to home page by the click button")
 def test_return_button(subscription):
     sub = Subscription(subscription)
     sub.return_from_subscription_page()
     expect(subscription).to_have_url("http://localhost:3000/automation-lab")
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Select period: {period}")
 @pytest.mark.parametrize("period, expect_res", PERIOD, ids=RES_PERIOD)
 def test_click_choice_period(subscription, period, expect_res):
     sub = Subscription(subscription)
@@ -41,6 +52,9 @@ def test_click_choice_period(subscription, period, expect_res):
     sub.verify_text_period(expect_res)
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Select tariff: {tariff}")
 @pytest.mark.parametrize("tariff, expect_res", TARIFF, ids=RES_TARIFF)
 def test_click_tariff_choice(subscription, tariff, expect_res):
     sub = Subscription(subscription)
@@ -48,6 +62,9 @@ def test_click_tariff_choice(subscription, tariff, expect_res):
     sub.verify_text_tariff(expect_res)
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Promo code valid and invalid")
 @pytest.mark.parametrize(
     "period, tariff, promo_code, expect_res", PROMO_CODE, ids=RES_PROMO_CODE
 )
@@ -61,6 +78,9 @@ def test_promo_code_valid_and_invalid(
     sub.input_promo_code(promo_code, expect_res)
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Fill valid credit cards")
 @pytest.mark.parametrize(
     "card_number, mm_yy, cvv, expect_res", VALID_CREDIT_CARDS, ids=RES_VALID_CARDS
 )
@@ -74,6 +94,9 @@ def test_valid_credit_cards(subscription, card_number, mm_yy, cvv, expect_res):
     card.verify_subscription_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Fill invalid credit cards")
 @pytest.mark.parametrize(
     "card_number, mm_yy, cvv, expect_res", INVALID_CREDIT_CARDS, ids=RES_INVALID_CARDS
 )
@@ -87,6 +110,9 @@ def test_invalid_credit_cards(subscription, card_number, mm_yy, cvv, expect_res)
     card.verify_subscription_opened()
 
 
+@allure.epic("UI Tests")
+@allure.feature("Subscription")
+@allure.title("Fill some long numbers to credit card")
 def test_big_numbers_to_card(subscription):
     card = Subscription(subscription)
     card.verify_summary_section()
